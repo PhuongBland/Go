@@ -1,0 +1,21 @@
+
+
+
+// Select the database to use.
+use('cict-quiz-api');
+
+
+
+// Insert a few documents into the sales collection.
+db.user.insertMany([
+  { 'full_name': 'Thúy Phương', 'password': 'Phuong2106' },
+  { 'full_name': 'Hồng Nhung', 'password': 'Nhung2507' },
+
+]);
+
+// Run a find command to view items sold on April 4th, 2014.
+// db.user.find({ });
+
+db.user.find().forEach(printjson)
+db.user.getIndexes()
+// iterate through the cursor page by page.

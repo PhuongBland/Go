@@ -1,0 +1,53 @@
+# Routes Config
+#
+# This file defines all application routes (Higher priority routes first)
+#
+
+module:testrunner
+# module:jobs
+
+
+
+
+GET     /                                           App.Index
+
+GET     /login                                      AuthController.Index
+POST    /AuthController/LoginForm                   AuthController.LoginForm
+GET     /home                                       QuestionController.Index
+
+
+
+GET     /api/users                                  UserController.GetAll
+POST    /api/users/register                         UserController.Register
+GET     /api/users/:id                              UserController.GetUserFormID
+GET     /api/users/delete/:id                       UserController.Delete
+
+GET     /api/courses                                CourseController.GetAll
+POST    /api/courses/insert/one                     CourseController.InsertOne
+POST    /api/courses/insert/range                   CourseController.InsertMany
+
+
+GET     /api/categories                             CategoryController.GetAll
+POST    /api/categories/create                      CategoryController.Create
+
+
+
+GET     /api/question                               QuestionController.GetAll
+POST    /api/question/create                        QuestionController.Create
+
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/*filepath                       Static.Serve("public")
+
+# Catch all, this will route any request into the controller path
+#
+#                    **** WARNING ****
+# Enabling this exposes any controller and function to the web.
+# ** This is a serious security issue if used online **
+#
+# For rapid development uncomment the following to add new controller.action endpoints
+# without having to add them to the routes table.
+# *       /:controller/:action                    :controller.:action

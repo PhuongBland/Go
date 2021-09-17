@@ -1,0 +1,174 @@
+{{set . "title" "Home"}}
+{{append . "moreStyles" "css/question.css"}}
+{{append . "moreScripts" "js/script.js"}}
+
+
+{{template "header.html" .}}
+
+<div class="container">
+    <div class="wrapper">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">
+                    <img src="/public/img/logo-question.png" alt="logo-question">
+                </a>
+            </div>
+
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li>
+                    <a data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Stats"><i
+                            class="fa fa-bar-chart-o"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin User <b
+                            class="fa fa-angle-down"></b></a>
+
+                </li>
+            </ul>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <!--    <div class="row1 col-sm-4">-->
+
+        <div class="col-md-4 sidebar" id="content">
+            <h3>Search</h3>
+            <input class="form-control" id="exampleInput" placeholder="Search">
+
+            <p>Chuyên mục</p>
+
+            <div id="dropdown-container">
+
+            </div>
+
+        </div>
+        <div class="col-md-8 sidebar" id="content1">
+            <!--        <div class="row2 col-sm-8">-->
+            <button style="background-color: #02D8FE">
+                <span class="btn" id="add-question"> Thêm câu hỏi mới </span>
+            </button>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="row">Question</th>
+                        <th>Category</th>
+                        <th>Type</th>
+                        <th>Level</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <!--Table body-->
+                    <tbody id="table-body">
+
+                    </tbody>
+
+                    <!--Table body-->
+                </table>
+                <!--Table-->
+            </div>
+        </div>
+        <!-- Kết thúc cột phải -->
+    </div>
+</div>
+
+<style>
+    .custom-modal {
+        position: absolute;
+        top: 30px;
+        left: 160px;
+        border-radius: 10px;
+        opacity: 1;
+        width: 80vw;
+        background-color: #fff;
+        padding: 30px;
+    }
+
+</style>
+
+<div class="custom-modal" hidden id="new-question-modal">
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Câu hỏi</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                   placeholder="Nhập nội dung câu hỏi">
+        </div>
+        <div class="form-group" id="answer-list">
+            <label for="exampleInputPassword1">Đáp án</label>
+            <input type="text" class="form-control my-1" id="exampleInputPassword1"
+                   placeholder="Câu trả lời cho đáp án A">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" id="add-answer">Thêm đáp áp</button>
+        </div>
+
+        <div class="form-group">
+            <label for="dapandung">Đáp án đúng</label>
+            <input type="text" class="form-control" id="dapandung" placeholder="Ghi câu trả lời đúng: A, B, C hay D">
+        </div>
+
+        <div class="form-group">
+            <label for="list-categories">Nhóm câu hỏi</label>
+            <select name="list-categories" id="list-categories" class="form-control">
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="capdo">Cấp độ</label>
+            <select class="form-control" id="capdo">
+                <option value="3">Dễ</option>
+                <option value="2">Trung bình</option>
+                <option value="1">Khó</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cauhoioption">Kiểu câu hỏi</label>
+            <select class="form-control" id="cauhoioption">
+                <option value="1">Chữ</option>
+                <option value="2">Hình ảnh</option>
+                <option value="3">Giọng nói</option>
+            </select>
+        </div>
+
+        <button id="btn-create-new-question" class="btn btn-primary">Tạo mới</button>
+        <button id="btn-close-modal" class="btn btn-danger">Đóng</button>
+    </form>
+</div>
+
+<script>
+
+</script>
+
+<script>
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+
+    let currentIndex = 1;
+
+    const btnAddAnswer = document.getElementById('add-answer');
+    btnAddAnswer.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('answer-list').insertAdjacentHTML('beforeend', `
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Câu trả lời cho đáp án ${characters[currentIndex++]}">
+         `);
+    });
+</script>
+
+
+{{template "footer.html" .}}
